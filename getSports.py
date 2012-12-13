@@ -12,14 +12,23 @@ class Sport:
 	def get_sports_by_type (self,type):
 		return self.sports
 
-class SportPage(webapp2.RequestHandler):
+class AllSportPage(webapp2.RequestHandler):
 	def get(self):
 		sport = Sport()
 		self.response.headers['Content-Type'] = 'text/plain'
 		text = json.dumps(sport.get_all_sports(),sort_keys=True)
 		self.response.write(text)
 
-app = webapp2.WSGIApplication([('/api/sports/all', SportPage)],debug=True)
+class SportByTypePage(webapp2.RequestHandler):
+	def get(self, type_id):
+		sport = Sport()
+		self.response.headers['Content-Type'] = 'text/plain'
+		text = json.dumps(sport.get_all_sports(),sort_keys=True)
+		self.response.write(text)
+
+app = webapp2.WSGIApplication([
+	('/api/sports/all', AllSportPage),
+	('/api/sports/type/(\d+)',SportByTypePage)],debug=True)
 
 
 if __name__ == '__main__':
