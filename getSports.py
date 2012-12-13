@@ -9,8 +9,12 @@ class Sport:
 	def get_all_sports (self):
 		return self.sports
 
-	def get_sports_by_type (self,type):
-		return self.sports
+	def get_sports_by_type (self,type_id):
+		sports = []
+		for sport in self.sports:
+			if sport[u'type'] == type_id:
+				sports.append(sport)
+		return sports
 
 class AllSportPage(webapp2.RequestHandler):
 	def get(self):
@@ -23,7 +27,7 @@ class SportByTypePage(webapp2.RequestHandler):
 	def get(self, type_id):
 		sport = Sport()
 		self.response.headers['Content-Type'] = 'text/plain'
-		text = json.dumps(sport.get_all_sports(),sort_keys=True)
+		text = json.dumps(sport.get_sports_by_type(int(type_id)),sort_keys=True)
 		self.response.write(text)
 
 app = webapp2.WSGIApplication([

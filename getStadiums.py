@@ -9,9 +9,12 @@ class Stadium:
 	def get_all_stadiums(self):
 		return self.stadiums
 
-	def get_stadiums_by_type ( self, type ):
+	def get_stadiums_by_type ( self, type_id ):
 		stadiums=[]
-		return self.stadiums
+		for stadium in self.stadiums:
+			if stadium[u'type'] == type_id :
+				stadiums.append(stadium)
+		return stadiums
 
 	def get_stadiums_by_sport ( self, sport):
 		stadiums=[]
@@ -28,19 +31,20 @@ class StadiumByTypePage(webapp2.RequestHandler):
 	def get(self,type_id):
 		stadium = Stadium()
 		self.response.headers['Content-Type'] = 'text/plain'
-		text = json.dumps(stadium.get_all_stadiums(),sort_keys=True)
+		text = json.dumps(stadium.get_stadiums_by_type(int(type_id)),sort_keys=True)
 		self.response.write(text)
 
 class StadiumBySportPage(webapp2.RequestHandler):
-	def get(self,type_id):
+	def get(self,sport):
 		stadium = Stadium()
 		self.response.headers['Content-Type'] = 'text/plain'
-		text = json.dumps(stadium.get_all_stadiums(),sort_keys=True)
+		text = json.dumps(stadium.get_stadiums_by_sport(sport),sort_keys=True)
 		self.response.write(text)
 
 app = webapp2.WSGIApplication([
 	('/api/stadiums/all', AllStadiumPage),
-	('/api/stadiums/type/(\d+)',StadiumByTypePage)
+	('/api/stadiums/type/(\d+)',StadiumByTypePage),
+	('/api/stadiums/sport/(\.+)',StadiumBySportPage)
 	],debug=True)
 
 
