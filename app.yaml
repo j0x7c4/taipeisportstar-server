@@ -1,0 +1,17 @@
+application: taipeisportstar
+version: 1
+runtime: python27
+api_version: 1
+threadsafe: true
+
+handlers:
+- url: /api/stadiums/(all|type/.*|sport/.*)
+  script: getStadiums.app
+- url: /api/sports/(all|type/.*)
+  script: getSports.app
+- url: /.*
+  script: taipeisportstar.app
+
+- url: /(.*\.txt)
+  static_files: /\1
+  upload: /(.*\.txt)

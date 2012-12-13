@@ -1,0 +1,7 @@
+[{"id":0,"name":"足球","type":0},{"id":1,"name":"籃球","type":2},{"id":2,"name":"網球","type":2},{"id":3,"name":"排球","type":2},{"id":4,"name":"壘球","type":0}
+,{"id":5,"name":"棒球","type":0}
+,{"id":6,"name":"溜冰","type":1}
+,{"id":7,"name":"曲棍球","type":1}
+,{"id":8,"name":"木球","type":0}
+,{"id":9,"name":"迷你高爾夫","type":1}
+,{"id":10,"name":"橄欖球","type":0},{"id":11,"name":"槌球","type":0},{"id":12,"name":"羽球","type":1},{"id":13,"name":"桌球","type":1},{"id":14,"name":"游泳","type":1},{"id":15,"name":"體適能","type":1},{"id":16,"name":"韻律教室","type":1},{"id":17,"name":"攀岩","type":1},{"id":18,"name":"瑜伽","type":1},{"id":19,"name":"舞蹈","type":1},{"id":20,"name":"健身","type":1},{"id":21,"name":"田徑","type":0},{"id":22,"name":"鏈球","type":0},{"id":23,"name":"跳遠","type":0},{"id":24,"name":"三級跳遠","type":0},{"id":25,"name":"棋藝","type":1},{"id":26,"name":"攀岩","type":2},{"id":27,"name":"壁球","type":1},{"id":28,"name":"室內跑道","type":1},{"id":29,"name":"旱地直排輪","type":2},{"id":30,"name":"武術","type":2},{"id":31,"name":"高爾夫球","type":0},{"id":32,"name":"射擊","type":2},{"id":33,"name":"射箭","type":2},{"id":34,"name":"漆彈","type":2}]
