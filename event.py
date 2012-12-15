@@ -4,7 +4,7 @@ import webapp2
 import datetime 
 from google.appengine.ext import db
 
-class Event ( db.model ):
+class Event ( db.Model ):
 	event_id = db.StringProperty()
 	#create_date = db.DateProperty()
 	#expired_date = db.DateProperty()
