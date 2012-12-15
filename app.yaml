@@ -6,9 +6,11 @@ threadsafe: true
 
 handlers:
 - url: /api/stadiums/(all|type/.*|sport/.*)
-  script: getStadiums.app
+  script: stadium.app
 - url: /api/sports/(all|type/.*)
-  script: getSports.app
+  script: sport.app
+- url: /api/event/create/(\d*)
+  script: event.app
 - url: /.*
   script: taipeisportstar.app
 
