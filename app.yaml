@@ -5,7 +5,7 @@ api_version: 1
 threadsafe: true
 
 handlers:
-- url: /api/stadiums/(all|type/.*|sport/.*)
+- url: /api/stadiums/(all|type/.*|sport/.*|id/\d+)
   script: stadium.app
 - url: /api/sports/(all|type/.*)
   script: sport.app
