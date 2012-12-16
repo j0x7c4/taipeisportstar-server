@@ -11,6 +11,9 @@ handlers:
   script: sport.app
 - url: /api/event/create/(\d*)
   script: event.app
+- url: /api/event/select/(all|id/.*)
+  script: event.app
+
 - url: /.*
   script: taipeisportstar.app
 

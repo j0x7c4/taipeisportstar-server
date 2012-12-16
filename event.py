@@ -6,11 +6,15 @@ from google.appengine.ext import db
 
 class Event ( db.Model ):
 	event_id = db.StringProperty()
-	#create_date = db.DateProperty()
-	#expired_date = db.DateProperty()
-	#sport_id = db.StringProperty()
-	#stadium_id = db.StringProperty()
-	#owner_id = db.StringProperty()
+
+	#return a list containing all events
+	def get_all_evnets(self):
+		events = []
+		q = self.all()
+		for item in q:
+			event = {u'id':item.event_id}
+			events.append(event)
+		return events
 
 class CreateEventPage(webapp2.RequestHandler):
 	def get(self, event_id_):
@@ -19,5 +23,13 @@ class CreateEventPage(webapp2.RequestHandler):
 		self.response.headers['Content-Type'] = 'text/plain'
 		self.response.write(text)
 
+class SelectAllEventsPage(webapp2.RequestHandler):
+	def get(self):
+		event = Event()
+		text = json.dumps(event.get_all_evnets(),sort_keys=True)
+		self.response.headers['Content-Type'] = 'text/plain'
+		self.response.write(text)
+
 app = webapp2.WSGIApplication([
-	('/api/event/create/(\d+)', CreateEventPage)],debug=True)
+	('/api/event/create/(\d+)', CreateEventPage),
+	('/api/event/select/all', SelectAllEventsPage)],debug=True)
