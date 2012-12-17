@@ -7,12 +7,25 @@ threadsafe: true
 handlers:
 - url: /api/stadiums/(all|type/.*|sport/.*|id/\d+)
   script: stadium.app
-- url: /api/sports/(all|type/.*)
+- url: /api/sports/(all|type/.*|id/\d+)
   script: sport.app
-- url: /api/event/create/(\d*)
+- url: /api/event/create/(\d*)/(\d*)/(\d*)
   script: event.app
 - url: /api/event/select/(all|id/.*)
   script: event.app
+
+- url: /sport_model.py
+  static_files: sport_model.py
+  upload: /sport_model.py
+- url: /weather_model.py
+  static_files: weather_model.py
+  upload: /weather_model.py
+- url: /event_model.py
+  static_files: event_model.py
+  upload: /event_model.py
+- url: /stadium_model.py
+  static_files: stadium_model.py
+  upload: /stadium_model.py
 
 - url: /.*
   script: taipeisportstar.app
