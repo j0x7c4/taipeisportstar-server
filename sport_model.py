@@ -22,4 +22,7 @@ class Sport:
 		return None
 
 if __name__ == '__main__':
-	weather = weather_model.Weather()
+	sport_set = Sport()
+	sport = sport_set.get_sport_by_id(0)
+	sport[u'aaa'] = []
+	print sport

@@ -25,7 +25,11 @@ class Stadium:
 			sports = stadium[u'sport']
 			count = int(stadium[u'count'])
 			for idx in range(0,count):
-				if sports[str(idx)] == sport_name.decode('utf-8','ignore'):
+				if sports[str(idx)][u'name'] == sport_name.decode('utf-8','ignore'):
 					stadiums.append(stadium)
 					break;
 		return stadiums
+
+if __name__ == "__main__":
+	stadium = Stadium()
+	print stadium.get_stadiums_by_sport("footabll")

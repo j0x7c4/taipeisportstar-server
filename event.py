@@ -17,6 +17,22 @@ class SelectAllEventsPage(webapp2.RequestHandler):
 		self.response.headers['Content-Type'] = 'text/plain'
 		self.response.write(text)
 
+class SelectStadiumWithEvent(webapp2.RequestHandler):
+	def get(self):
+		event = event_model.Event()
+		text = json.dumps(event.get_stadium_with_event(),sort_keys=True)
+		self.response.headers['Content-Type'] = 'text/plain'
+		self.response.write(text)
+
+class SelectSportWithEvent(webapp2.RequestHandler):
+	def get(self):
+		event = event_model.Event()
+		text = json.dumps(event.get_sport_with_event(),sort_keys=True)
+		self.response.headers['Content-Type'] = 'text/plain'
+		self.response.write(text)
+
 app = webapp2.WSGIApplication([
 	('/api/event/create/(\d+)/(\d+)/(\d+)', CreateEventPage),
+	('/api/event/select/sport', SelectSportWithEvent),
+	('/api/event/select/stadium', SelectStadiumWithEvent),
 	('/api/event/select/all', SelectAllEventsPage)],debug=True)

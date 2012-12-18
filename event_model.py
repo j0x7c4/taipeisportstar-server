@@ -18,10 +18,29 @@ class Event ( db.Model ):
 		return events
 
 	def get_stadium_with_event (self):
-		events = []
-		q = self.all()
-		return events
+		result = []
+		stadium_set = stadium_model.Stadium()
+		sport_set = sport_model.Sport()
+		q = db.GqlQuery("SELECT DISTINCT stadium_id FROM Event")
+		for item in q:
+			stadium = stadium_set.get_stadium_by_id(int(item.stadium_id))
+			stadium[u'event'] = []
+			q2 = db.GqlQuery("SELECT * FROM Event WHERE stadium_id = '" + item.stadium_id + "'")
+			for item2 in q2:
+				stadium[u'event'].append({u'event_id':item2.event_id, u'event_sport':sport_set.get_sport_by_id(int(item2.sport_id))})
+			result.append(stadium)
+		return result
 
 	def get_sport_with_event (self):
-		events = []
-		return events
+		result = []
+		stadium_set = stadium_model.Stadium()
+		sport_set = sport_model.Sport()
+		q = db.GqlQuery("SELECT DISTINCT sport_id FROM Event")
+		for item in q:
+			sport = sport_set.get_sport_by_id(int(item.sport_id))
+			sport[u'event'] = []
+			q2 = db.GqlQuery("SELECT * FROM Event WHERE sport_id = '" + item.sport_id + "'")
+			for item2 in q2:
+				sport[u'event'].append({u'event_id':item2.event_id, u'event_stadium':stadium_set.get_stadium_by_id(int(item2.stadium_id))})
+			result.append(sport)
+		return result
