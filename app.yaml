@@ -13,6 +13,8 @@ handlers:
   script: event.app
 - url: /api/event/select/(all|id/.*|stadium|sport)
   script: event.app
+- url: /api/weather
+  script: weather.app
 
 - url: /sport_model.py
   static_files: sport_model.py

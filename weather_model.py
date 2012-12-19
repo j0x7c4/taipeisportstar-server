@@ -15,7 +15,7 @@ class Weather:
 		self.location = results[u'location'][u'city'] + ', ' + results[u'location'][u'country']
 		self.condition = {u'text':condition[u'text'], u'temp':condition[u'temp'], u'code':condition[u'code']}
 		self.time = results[u'item'][u'pubDate']
-		self.image = results[u'image']
+		self.image = {u'url':"http://l.yimg.com/a/i/us/we/52/"+condition[u'code']+".gif", u'height':52, u'width':52}
 
 	def get_outdoor_sport_weight (self):
 		p = 1
@@ -23,13 +23,13 @@ class Weather:
 		d_temp = int(self.condition[u'temp']) - 27
 		p = math.exp(-d_temp*d_temp/25)
 		return p
+
+	def get_weather (self):
+		return {u'location':self.location, u'condition':self.condition, u'time':self.time, u'image':self.image}
 		
 
 if __name__ == "__main__":
 	weather = Weather()
 	print weather.get_outdoor_sport_weight()
-	print weather.location
-	print weather.time
-	print weather.condition
-	print weather.image
+	print weather.get_weather()
 
