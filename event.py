@@ -4,8 +4,11 @@ import datetime
 import event_model
 
 class CreateEventPage(webapp2.RequestHandler):
-	def get(self, event_id_ , sport_id_, stadium_id_ ):
-		event = event_model.Event( event_id = str(event_id_), sport_id = str(sport_id_), stadium_id = str(stadium_id_) )
+	def get(self, event_id_ , sport_id_, stadium_id_ , owner_id_ ):
+		event = event_model.Event( event_id = str(event_id_), 
+								   sport_id = str(sport_id_), 
+								   stadium_id = str(stadium_id_),
+								   owner_id = str(owner_id_) )
 		text = event.put()
 		self.response.headers['Content-Type'] = 'text/plain'
 		self.response.write(text)
@@ -32,7 +35,7 @@ class SelectSportWithEvent(webapp2.RequestHandler):
 		self.response.write(text)
 
 app = webapp2.WSGIApplication([
-	('/api/event/create/(\d+)/(\d+)/(\d+)', CreateEventPage),
+	('/api/event/create/(\d+)/(\d+)/(\d+)/(\d+)', CreateEventPage),
 	('/api/event/select/sport', SelectSportWithEvent),
 	('/api/event/select/stadium', SelectStadiumWithEvent),
 	('/api/event/select/all', SelectAllEventsPage)],debug=True)

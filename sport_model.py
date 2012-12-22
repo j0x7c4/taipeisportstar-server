@@ -1,28 +1,40 @@
-import json
-import weather_model
+from google.appengine.ext import db
 
-class Sport:
-	def __init__ (self):
-		self.sports =  json.loads(open('sports.txt').read())
+class Sport( db.Model ): 
+	sport_id = db.IntegerProperty()
+	sport_type = db.IntegerProperty()
+	sport_name = db.StringProperty()
+	sport_pop_value = db.FloatProperty()
 
 	def get_all_sports (self):
-		return self.sports
+		sports = []
+		q = self.all()
+		for item in q:
+			sport = {u'id':item.sport_id,
+					 u'type':item.sport_type,
+					 u'name':item.sport_name,
+					 u'pop_value':item.sport_pop_value}
+			sports.append(sport)
+		return sports
 
 	def get_sports_by_type (self,type_id):
 		sports = []
-		for sport in self.sports:
-			if sport[u'type'] == type_id:
-				sports.append(sport)
+		q = db.GqlQuery("SELECT * FROM Sport WHERE sport_type = "+type_id)
+		for item in q:
+			sport = {u'id':item.sport_id,
+					 u'type':item.sport_type,
+					 u'name':item.sport_name,
+					 u'pop_value':item.sport_pop_value}
+			sports.append(sport)
 		return sports
 
 	def get_sport_by_id (self, sport_id):
-		for sport in self.sports:
-			if sport[u'id'] == sport_id:
-				return sport
+		q = db.GqlQuery("SELECT * FROM Sport WHERE sport_id = "+sport_id)
+		for item in q:
+			sport = {u'id':item.sport_id,
+					 u'type':item.sport_type,
+					 u'name':item.sport_name,
+					 u'pop_value':item.sport_pop_value}
+			return sport
 		return None
 
-if __name__ == '__main__':
-	sport_set = Sport()
-	sport = sport_set.get_sport_by_id(0)
-	sport[u'aaa'] = []
-	print sport

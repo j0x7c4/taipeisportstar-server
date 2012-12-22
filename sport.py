@@ -2,7 +2,6 @@ import json
 import webapp2
 import sport_model
 
-
 class AllSportPage(webapp2.RequestHandler):
 	def get(self):
 		sport = sport_model.Sport()
@@ -14,14 +13,14 @@ class SportByTypePage(webapp2.RequestHandler):
 	def get(self, type_id):
 		sport = sport_model.Sport()
 		self.response.headers['Content-Type'] = 'text/plain'
-		text = json.dumps(sport.get_sports_by_type(int(type_id)),sort_keys=True)
+		text = json.dumps(sport.get_sports_by_type(type_id),sort_keys=True)
 		self.response.write(text)
 
 class SportByIdPage(webapp2.RequestHandler):
 	def get(self, sport_id):
 		sport = sport_model.Sport()
 		self.response.headers['Content-Type'] = 'text/plain'
-		text = json.dumps(sport.get_sport_by_id(int(sport_id)),sort_keys=True)
+		text = json.dumps(sport.get_sport_by_id(sport_id),sort_keys=True)
 		self.response.write(text)
 
 app = webapp2.WSGIApplication([
