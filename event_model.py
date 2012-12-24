@@ -18,7 +18,7 @@ class Event ( db.Model ):
 		return events
 	def get_events_by_owner_id ( self, owner_id ):
 		events = []
-		q = db.GqlQuery("SELECT * FROM Event WHERE owner_id = "+owner_id)
+		q = db.GqlQuery("SELECT * FROM Event WHERE owner_id = '"+owner_id+"'")
 		for item in q:
 			events.append({u'event_id': item.event_id,
 						   u'owner_id': item.owner_id,
