@@ -11,7 +11,7 @@ handlers:
   script: sport.app
 - url: /api/event/create/(\d*)/(\d*)/(\d*)/(\d*)
   script: event.app
-- url: /api/event/select/(all|id/.*|stadium|sport)
+- url: /api/event/select/(all|id/.*|stadium|sport|ownerid/.*)
   script: event.app
 - url: /api/weather
   script: weather.app

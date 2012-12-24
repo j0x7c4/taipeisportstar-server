@@ -9,14 +9,22 @@ class Event ( db.Model ):
 	stadium_id = db.StringProperty()
 	owner_id = db.StringProperty()
 	#return a list containing all events
-	def get_all_evnets(self):
+	def get_all_events(self):
 		events = []
 		q = self.all()
 		for item in q:
 			event = {u'event_id':item.event_id, u'sport_id':item.sport_id, u'stadium_id':item.stadium_id, u'owner_id':item.owner_id}
 			events.append(event)
 		return events
-
+	def get_events_by_owner_id ( self, owner_id ):
+		events = []
+		q = db.GqlQuery("SELECT * FROM Event WHERE owner_id = "+owner_id)
+		for item in q:
+			events.append({u'event_id': item.event_id,
+						   u'owner_id': item.owner_id,
+						   u'sport_id': item.sport_id,
+						   u'stadium_id': item.stadium_id})
+		return events;
 	def get_stadium_with_event (self):
 		result = []
 		stadium_set = stadium_model.Stadium()
