@@ -15,6 +15,10 @@ handlers:
   script: event.app
 - url: /api/weather
   script: weather.app
+- url: /api/profile/create/.*
+  script: profile.app
+- url: /api/profile/select/(all|id/.*)
+  script: profile.app
 
 - url: /sport_model.py
   static_files: sport_model.py
@@ -28,6 +32,9 @@ handlers:
 - url: /stadium_model.py
   static_files: stadium_model.py
   upload: /stadium_model.py
+- url: /profile_model.py
+  static_files: profile_model.py
+  upload: /profile_model.py
 
 - url: /.*
   script: taipeisportstar.app
